@@ -298,8 +298,9 @@ def create_open_cv_superres():
         import cv2
     except ImportError as exc:
         raise UpscaleError(
-            "OpenCV is not installed. Install the light stack with: "
-            "python -m pip install -r requirements-light.txt"
+            "OpenCV could not be imported. On Streamlit Cloud, make sure "
+            "packages.txt includes libgl1 and libglib2.0-0t64. Original error: "
+            f"{exc}"
         ) from exc
 
     if not hasattr(cv2, "dnn_superres"):
@@ -373,8 +374,9 @@ def import_realesrgan_stack():
         from realesrgan.archs.srvgg_arch import SRVGGNetCompact
     except ImportError as exc:
         raise UpscaleError(
-            "Real-ESRGAN dependencies are not installed. Install them with: "
-            "python -m pip install -r requirements.txt"
+            "Real-ESRGAN could not be imported. On Streamlit Cloud, use Python "
+            "3.11 and make sure packages.txt includes libgl1 and "
+            f"libglib2.0-0t64. Original error: {exc}"
         ) from exc
 
     return cv2, np, torch, RRDBNet, RealESRGANer, SRVGGNetCompact
