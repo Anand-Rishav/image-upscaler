@@ -36,6 +36,26 @@ http://localhost:8501
 For deployment, run the same Streamlit app on your server and point your domain
 or reverse proxy to the Streamlit port.
 
+## Streamlit Community Cloud
+
+Deploy with Python 3.11. The Real-ESRGAN dependency stack does not install on
+Python 3.14.
+
+When creating the Streamlit Cloud app:
+
+1. Set the repository branch to `main`.
+2. Set the main file path to `streamlit_app.py`.
+3. Open `Advanced settings`.
+4. Set Python version to `3.11`.
+5. Deploy the app.
+
+If the app was already created with the wrong Python version, delete it and
+redeploy it with Python 3.11 selected.
+
+This repository includes `packages.txt` with `libgl1` for Linux/OpenCV support.
+Do not add `libglib2.0-0`; it can fail to resolve on Streamlit Cloud's current
+Linux image.
+
 ## CLI Usage
 
 Upscale one image with the best available engine:
